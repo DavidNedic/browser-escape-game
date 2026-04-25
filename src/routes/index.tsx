@@ -1,26 +1,25 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { EscapeGame } from "@/components/escape/EscapeGame";
 
 export const Route = createFileRoute("/")({
   component: Index,
+  head: () => ({
+    meta: [
+      { title: "Browser Escape — Drei Räume, ein Ausgang" },
+      {
+        name: "description",
+        content:
+          "Ein minimalistisches Browser-Escape-Spiel. Klicken, scrollen, suchen — finde das Licht.",
+      },
+      { property: "og:title", content: "Browser Escape — Drei Räume, ein Ausgang" },
+      {
+        property: "og:description",
+        content: "Ein minimalistisches Browser-Escape-Spiel im Dark Mode.",
+      },
+    ],
+  }),
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
-
 function Index() {
-  return <PlaceholderIndex />;
+  return <EscapeGame />;
 }

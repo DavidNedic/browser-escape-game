@@ -63,38 +63,78 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --background: oklch(0.08 0.01 270);
+  --foreground: oklch(0.98 0.005 270);
+  --neon: oklch(0.85 0.18 165);
+  --neon-soft: oklch(0.85 0.18 165 / 0.15);
+  --neon-glow: oklch(0.85 0.22 165 / 0.5);
+  --shadow-neon: 0 0 20px var(--neon-glow), 0 0 50px var(--neon-glow);
+  --transition-room: cubic-bezier(0.16, 1, 0.3, 1);
+  --card: oklch(0.12 0.01 270);
+  --card-foreground: oklch(0.98 0.005 270);
+  --popover: oklch(0.12 0.01 270);
+  --popover-foreground: oklch(0.98 0.005 270);
+  --primary: oklch(0.85 0.18 165);
+  --primary-foreground: oklch(0.08 0.01 270);
+  --secondary: oklch(0.18 0.01 270);
+  --secondary-foreground: oklch(0.98 0.005 270);
+  --muted: oklch(0.15 0.01 270);
+  --muted-foreground: oklch(0.55 0.02 270);
+  --accent: oklch(0.18 0.01 270);
+  --accent-foreground: oklch(0.98 0.005 270);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
+  --border: oklch(0.2 0.01 270);
+  --input: oklch(0.18 0.01 270);
+  --ring: oklch(0.85 0.18 165);
+  --chart-1: oklch(0.85 0.18 165);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
+  --sidebar: oklch(0.1 0.01 270);
+  --sidebar-foreground: oklch(0.98 0.005 270);
+  --sidebar-primary: oklch(0.85 0.18 165);
+  --sidebar-primary-foreground: oklch(0.08 0.01 270);
+  --sidebar-accent: oklch(0.18 0.01 270);
+  --sidebar-accent-foreground: oklch(0.98 0.005 270);
+  --sidebar-border: oklch(0.2 0.01 270);
+  --sidebar-ring: oklch(0.85 0.18 165);
+}
+
+@keyframes room-fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-bg {
+  0%, 100% { background-color: var(--background); }
+  50% { background-color: oklch(0.1 0.015 270); }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.room-enter {
+  animation: room-fade-in 0.8s var(--transition-room);
+}
+
+.text-glow {
+  text-shadow: 0 0 12px var(--neon-glow);
+}
+
+.btn-neon {
+  background: transparent;
+  border: 1px solid var(--neon);
+  color: var(--neon);
+  transition: all 0.3s var(--transition-room);
+}
+
+.btn-neon:hover {
+  background: var(--neon-soft);
+  box-shadow: var(--shadow-neon);
 }
 
 .dark {
