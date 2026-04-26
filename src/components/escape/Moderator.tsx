@@ -135,13 +135,20 @@ export function Moderator({ context }: Props) {
   return (
     <div className="pointer-events-none fixed bottom-4 left-4 z-[60] max-w-[min(92vw,420px)]">
       <div className="pointer-events-auto flex items-end gap-3">
-        {/* Avatar */}
+        {/* Avatar — Video-Loop */}
         <div
-          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-primary/40 bg-background/80 text-lg backdrop-blur-md"
+          className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full border border-primary/40 bg-background/80 backdrop-blur-md"
           style={{ boxShadow: "0 0 16px var(--neon-glow)" }}
           aria-hidden
         >
-          🧿
+          <video
+            src="/moderator.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="h-full w-full object-cover"
+          />
         </div>
 
         {/* Bubble */}
