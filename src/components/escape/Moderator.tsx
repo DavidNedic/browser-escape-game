@@ -19,7 +19,10 @@ type ContextKey =
   | "exact"
   | "ink"
   | "cursed"
-  | "popup";
+  | "popup"
+  | "cookies"
+  | "captcha"
+  | "loading";
 
 const LINES: Record<ContextKey, string[]> = {
   start: [
@@ -85,6 +88,24 @@ const LINES: Record<ContextKey, string[]> = {
     "Klick nisch Neu Laden! Sons fängs du komplett von vorne an, Bruda!",
     "Drück die Taste oben links bei Tastatur. Du weiß welsche, Habibi.",
     "Escape heiß die Taste. Isch sag nur, isch sag nisch.",
+  ],
+  cookies: [
+    "Eyyy diese Cookies, lan! Mehr als Krümel bei Oma am Sonntag!",
+    "Bruda, manschmal musst du akseptieren, sons komms du nie raus, vallah.",
+    "Ablehnen, ablehnen, ablehnen... am Ende isses doch deaktiviert. Klassisch!",
+    "Gegen dein Bauchgefühl klicken, Habibi. Das Leben is unfair.",
+  ],
+  captcha: [
+    "Wieder Ampeln? Eyyy isch hab Führerschein, isch weiß was Ampel is!",
+    "Vielleischt is bes Antwort: gar nix klicken, Bruda. Denk mal nach.",
+    "Ein Mensch hat nix su beweisen, Habibi. Direkt bestätigen, lan!",
+    "Klick eine Kachel und alles geht von vorne los. Wallah, Falle!",
+  ],
+  loading: [
+    "Neunsigneun Prosent, Bruda. Wie mein Akku immer.",
+    "Der Balken bewegt sisch nisch, weil du guckst, lan! Schau weg!",
+    "Maus aus dem Fenster, Habibi. Browser is shy, brauch Privatsphäre.",
+    "Vallah, sobald du nisch hinschaust, geht alles. Wie im Leben.",
   ],
 };
 

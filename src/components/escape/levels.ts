@@ -7,6 +7,9 @@ import { Level6Exact } from "./Level6Exact";
 import { Level7InvisibleInk } from "./Level7InvisibleInk";
 import { Level8CursedCheckboxes } from "./Level8CursedCheckboxes";
 import { Level9FakePopup } from "./Level9FakePopup";
+import { Level10CookieHell } from "./Level10CookieHell";
+import { Level11Captcha } from "./Level11Captcha";
+import { Level12LoadingBar } from "./Level12LoadingBar";
 import type { LevelDef } from "./types";
 
 // Add new levels here — they'll automatically appear in the game.
@@ -20,4 +23,7 @@ export const LEVELS: LevelDef[] = [
   { id: "ink", name: "Unsichtbare Tinte", Component: Level7InvisibleInk },
   { id: "cursed", name: "Verfluchte Boxen", Component: Level8CursedCheckboxes },
   { id: "popup", name: "Trügerisches Pop-up", Component: Level9FakePopup },
+  { id: "cookies", name: "Cookie-Hölle", Component: Level10CookieHell },
+  { id: "captcha", name: "Endlos-Captcha", Component: Level11Captcha },
+  { id: "loading", name: "Ewiger Ladebalken", Component: Level12LoadingBar },
 ];
