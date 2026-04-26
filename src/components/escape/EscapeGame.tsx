@@ -34,7 +34,7 @@ export function EscapeGame() {
             Browser Escape
           </p>
           <h1 className="text-glow text-center text-5xl font-light tracking-widest md:text-7xl">
-            Drei Räume.
+            Zwölf Räume.
             <br />
             <span className="text-muted-foreground">Ein Ausgang.</span>
           </h1>
