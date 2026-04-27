@@ -3,26 +3,22 @@ import { useEffect, useMemo, useRef, useState } from "react";
 /**
  * Moderator-Bubble: persistent unten links.
  * Spruchpool pro Kontext (Raum / Start / Win).
- * Rotiert alle paar Sekunden, mit Tippanimation.
- *
  * Stil: starkes Kanak-Deutsch, Mix aus Hilfe und Trolling.
  */
 
 type ContextKey =
   | "start"
   | "won"
-  | "click"
-  | "scroll"
-  | "hover"
-  | "flee"
-  | "bait"
-  | "exact"
-  | "ink"
-  | "cursed"
-  | "popup"
-  | "cookies"
-  | "captcha"
-  | "loading";
+  | "mirror"
+  | "shake"
+  | "patience"
+  | "konami"
+  | "typo"
+  | "darkroom"
+  | "slider"
+  | "drag"
+  | "resize"
+  | "trust";
 
 const LINES: Record<ContextKey, string[]> = {
   start: [
@@ -35,77 +31,65 @@ const LINES: Record<ContextKey, string[]> = {
     "Eyy Maschallah, Bruda! Du bis frei!",
     "Geh raus, trink ein Çay, du has verdient, Habibi.",
   ],
-  click: [
-    "Ey was machs du? Klick auf den Knopf, lan, was sons?",
-    "Ja weiter klicken, immer weiter, isch sag dir wann genug is.",
-    "Bruda, dein Finger wird müde? Heul nisch, weiter!",
-    "Sehr gut Habibi, bald geht Tür auf. Vielleischt.",
+  mirror: [
+    "Eyy Bruda, dein Maus is besoffen oder was? Geht falsch rum, lan!",
+    "Spiegel lügt, isch lüg nisch. X is plötslich rückwärts, Habibi.",
+    "Wenn du nach rechs willst, geh nach links. Wie bei mein Ex.",
+    "Knopf is oben in die Eke. Dein Eke, nisch sein Eke, vallah.",
   ],
-  scroll: [
-    "Ey Bruda, scroll mal runter. Ja runter, nisch hoch, lan!",
-    "Tiefer, tiefer... wie mein Schulden bei Onkel, vallah.",
-    "Was guckst du? Mausrad drehen, los los!",
-    "Bissl Sport für dein Finger, schadet nisch.",
+  shake: [
+    "Eyyy schüttel die Maus, Bruda! Wie Ayran in Flasche!",
+    "Mehr Power, lan! Mein Oma macht Teig schneller als du!",
+    "Wenn du aufhörs, geht Energie weg. Bewegen, immer bewegen, Habibi!",
+    "Hundert Prosent, sonst nix. Vallah, is fair.",
   ],
-  hover: [
-    "Irgendwo isses versteckt, Bruda. Mit Maus suchen, nisch mit Augen!",
-    "Ecken sin dein Freund, Habibi. Geh in die Ecken, lan.",
-    "Drei Sahlen, isch sag nisch welsche. Wäre su einfach.",
-    "Tipp: oben rechs is immer was los. Aber pscht, isch hab nix gesag.",
+  patience: [
+    "Eyyy ruhig, Bruda. Atme. Mach gar nix, lan.",
+    "Kein Maus, kein Tasten, nix. Wie Yoga, Habibi.",
+    "Jede Bewegung und Timer geht von vorn. Wie mein Diät.",
+    "Sweige. Warte. Sähle in Kopf bis swansig. Vallah.",
   ],
-  flee: [
-    "Eyyy lan, der Knopf läuft weg! Was machs du, Bruda?",
-    "Maus is nisch immer Antwort, Habibi. Tastatur exisirt aush!",
-    "Tab Tab Tab, dann Enter. Isch hab nix gesag, lan.",
-    "Hahaha du jagst Pixel wie Kasse beim Aldi am Samstag!",
+  konami: [
+    "Alte Beschwörung, Bruda. Pfeile drücken, lan!",
+    "Hoch hoch, runter runter, links rechs links rechs, B A. Klassisch, Habibi!",
+    "Wenn du Falsche drücks, fängs alles von vorn an. Konsentration!",
+    "Mein Cousin macht das mit geschlossenen Augen, vallah.",
   ],
-  bait: [
-    "Großer roter Knopf? Vallah, das is Falle, Bruda!",
-    "Klick nisch da, isch warne disch! ...okay klick, isch lach drüber.",
-    "Lies den Text genau. Buchstabe für Buchstabe, lan.",
-    "Manschmal is Antwort mitten im Sats. Aber nur manschmal.",
+  typo: [
+    "Eyyy schreib genau wie da steht, Bruda. MIT Fehler, lan!",
+    "Nisch korrigieren, Habibi! Genau falsch, das is rischtig!",
+    "Dein Tastatur will dir helfen. Vertrau ihr nisch, vallah!",
+    "Mein Deutsch is besser, glaub mir. Aber tipp wie da steht.",
   ],
-  exact: [
-    "Sähl mit, Bruda! Genau fünfzig, nisch mehr nisch weniger!",
-    "Wenn du su schnell klicks, krieg isch Kopfschmerzen, lan!",
-    "Eins su viel und du fängs wieder von vorn an. Maschallah!",
-    "Atmen Habibi, atmen. Warte ein bissl, sons gibs Tilt.",
+  darkroom: [
+    "Eyy is dunkel, Bruda. Maus bewegen, dann sieht man was, lan!",
+    "Klein Liecht folgt dein Cursor. Such den Knopf, Habibi.",
+    "Manschmal versteckt isses in die Mitte, manschmal in die Eke. Vallah.",
+    "Augen auf! Oder zu, isses egal in dunkel.",
   ],
-  ink: [
-    "Bildschirm is leer? Bruda, mark mal alles mit Maus!",
-    "Strg+A, lan! Wie in dein Hausaufgaben damals.",
-    "Wenn du was sieht, sieh genau, Habibi. Ziehen, nisch lesen!",
-    "Ecke unten rechs. Mehr sag isch nisch.",
+  slider: [
+    "Eyyy Bruda, dreiundsiebsig! Genau, nisch swei vorbei, nisch swei rüber!",
+    "Heiß heiß, kalt kalt. Wie Sushi, Habibi.",
+    "Kreis leuchtet rot? Dann biste nah, lan. Pfeiltasten helfen aush.",
+    "Mein Oma trifft das mit Augen su. Du schaffs aush, vallah.",
   ],
-  cursed: [
-    "Diese Boxen sin verfluscht, Bruda. Wie mein Ex.",
-    "Eine geht an, andere geht aus. Klassisch, lan.",
-    "Lies Text genau. Doppelklick auf wischtige Wort, vallah.",
-    "Manschmal hilf nisch klicken, sondern doppelt klicken, Habibi.",
+  drag: [
+    "Eyy Bruda, Wort sussammenbauen. Buchstaben sieh, lan!",
+    "Acht Buchstaben. Endet mit was Schönem, Habibi. Was alle wollen.",
+    "Falsch gesetst? Klick drauf, kommt surück in die Reihe. Easy.",
+    "Vallah, das Wort is FREIHEIT. Hab isch nisch gesagt, pscht!",
   ],
-  popup: [
-    "Eyy was is das für Fenster? Sieht echt aus, lan, aber pscht...",
-    "Klick nisch Neu Laden! Sons fängs du komplett von vorne an, Bruda!",
-    "Drück die Taste oben links bei Tastatur. Du weiß welsche, Habibi.",
-    "Escape heiß die Taste. Isch sag nur, isch sag nisch.",
+  resize: [
+    "Eyyy mach Fenster schmaler, Bruda! Sieh den Marker, lan!",
+    "Sone in der Mitte triffen, Habibi. Etwa fünfhundert Pixel.",
+    "Sieh am Eke vom Browser, ssieh, ssieh!",
+    "Wenn du auf Handy bis: Browser-Leiste rein und raus scrollen, vallah.",
   ],
-  cookies: [
-    "Eyyy diese Cookies, lan! Mehr als Krümel bei Oma am Sonntag!",
-    "Bruda, manschmal musst du akseptieren, sons komms du nie raus, vallah.",
-    "Ablehnen, ablehnen, ablehnen... am Ende isses doch deaktiviert. Klassisch!",
-    "Gegen dein Bauchgefühl klicken, Habibi. Das Leben is unfair.",
-  ],
-  captcha: [
-    "Wieder Ampeln? Eyyy isch hab Führerschein, isch weiß was Ampel is!",
-    "Vielleischt is bes Antwort: gar nix klicken, Bruda. Denk mal nach.",
-    "Ein Mensch hat nix su beweisen, Habibi. Direkt bestätigen, lan!",
-    "Klick eine Kachel und alles geht von vorne los. Wallah, Falle!",
-  ],
-  loading: [
-    "Neunsigneun Prosent, Bruda. Wie mein Akku immer.",
-    "Der Balken bewegt sisch nisch, weil du guckst, lan! Schau weg!",
-    "Maus aus dem Fenster, Habibi. Browser is shy, brauch Privatsphäre.",
-    "Vallah, sobald du nisch hinschaust, geht alles. Wie im Leben.",
+  trust: [
+    "Eyy Bruda, lies GENAU was da steht! Ja heiß manschmal Nein, lan!",
+    "Frage hat NISCH? Dann antwort umgekehrt, Habibi!",
+    "Ein Knopf is anders als der andere, su klein dass man's kaum sieht.",
+    "Vertrau nix und niemand. Aush nisch mir, vallah.",
   ],
 };
 
